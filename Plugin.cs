@@ -12,7 +12,7 @@ namespace GatsWheel
     {
         public const string PluginGUID = "hed14.gatswheel";
         public const string PluginName = "GatsWheel";
-        public const string PluginVersion = "0.1.0";
+        public const string PluginVersion = "0.1.2";
 
         // Add this constant for the Gats fallback cost
         public const int GatsFallbackCost = 499;

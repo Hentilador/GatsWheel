@@ -59,26 +59,6 @@
             <HintPath>$(MycopunkManaged)\Assembly-CSharp.dll</HintPath>
             <Private>false</Private>
         </Reference>
-
-        <!-- Unity assemblies -->
-        <Reference Include="UnityEngine">
-            <HintPath>$(MycopunkManaged)\UnityEngine.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="UnityEngine.CoreModule">
-            <HintPath>$(MycopunkManaged)\UnityEngine.CoreModule.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-
-        <!-- Wwise assemblies -->
-        <Reference Include="AK.Wwise.Unity.API">
-            <HintPath>$(MycopunkManaged)\AK.Wwise.Unity.API.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="AK.Wwise.Unity.API.WwiseTypes">
-            <HintPath>$(MycopunkManaged)\AK.Wwise.Unity.API.WwiseTypes.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
     </ItemGroup>
 
 
