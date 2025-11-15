@@ -15,7 +15,7 @@ namespace GatsWheel
         public const string PluginVersion = "0.1.0";
 
         // Add this constant for the Gats fallback cost
-        public const int GatsFallbackCost = 500;
+        public const int GatsFallbackCost = 499;
 
         internal new static ManualLogSource Logger;
 
