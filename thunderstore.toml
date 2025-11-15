@@ -2,10 +2,10 @@
 schemaVersion = "0.0.1"
 
 [package]
-namespace = "TeamName"
-name = "PackageName"
-description = "Example mod description"
-websiteUrl = "https://github.com/funlennysub/MycopunkModTemplate"
+namespace = "Hentilador"
+name = "GatsPrizeWheel"
+description = "Use your hard earned gats to spin the Prize Wheel"
+websiteUrl = "https://github.com/Hentilador/GatsWheel"
 containsNsfwContent = false
 
 [package.dependencies]
@@ -17,8 +17,8 @@ readme = "README.md"
 outdir = "build"
 
 [[build.copy]]
-source = "bin/Release/net48/MycopunkModTemplate.dll"
-target = "BepInEx/plugins/MycopunkModTemplate.dll"
+source = "bin/Debug/net48/GatsWheel.dll"
+target = "BepInEx/plugins/GatsWheel.dll"
 
 [[build.copy]]
 source = "CHANGELOG.md"

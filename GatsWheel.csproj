@@ -1,5 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+    <Import Project="local_paths.props" Condition="Exists('local_paths.props')" />
+
     <PropertyGroup>
         <TargetFramework>net48</TargetFramework>
         <AssemblyName>GatsWheel</AssemblyName>
@@ -11,9 +13,9 @@
             https://nuget.bepinex.dev/v3/index.json;
             https://nuget.samboy.dev/v3/index.json
         </RestoreAdditionalProjectSources>
-        <RootNamespace>MycopunkModTemplate</RootNamespace>
+        <RootNamespace>GatsWheel</RootNamespace>
 
-        <!-- Git tags must strart with v -->
+        <!-- Git tags must start with v -->
         <MinVerTagPrefix>v</MinVerTagPrefix>
     </PropertyGroup>
 
@@ -53,9 +55,30 @@
     </ItemGroup>
 
     <ItemGroup>
-        <!--      <Reference Include="Assembly-CSharp" Publicize="true">-->
-        <!--        <HintPath>Path/to/Assembly-CSharp.dll</HintPath>-->
-        <!--      </Reference>-->
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(MycopunkManaged)\Assembly-CSharp.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+
+        <!-- Unity assemblies -->
+        <Reference Include="UnityEngine">
+            <HintPath>$(MycopunkManaged)\UnityEngine.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(MycopunkManaged)\UnityEngine.CoreModule.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+
+        <!-- Wwise assemblies -->
+        <Reference Include="AK.Wwise.Unity.API">
+            <HintPath>$(MycopunkManaged)\AK.Wwise.Unity.API.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="AK.Wwise.Unity.API.WwiseTypes">
+            <HintPath>$(MycopunkManaged)\AK.Wwise.Unity.API.WwiseTypes.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
     </ItemGroup>
 
 
