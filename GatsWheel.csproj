@@ -2,8 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>net48</TargetFramework>
-        <AssemblyName>MycopunkModTemplate</AssemblyName>
-        <Product>My first plugin</Product>
+        <AssemblyName>GatsWheel</AssemblyName>
+        <Product>Spin the Prize Wheel with your hard earned Gats</Product>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
         <RestoreAdditionalProjectSources>
