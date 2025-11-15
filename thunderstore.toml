@@ -18,7 +18,7 @@ outdir = "build"
 
 [[build.copy]]
 source = "bin/Debug/net48/GatsWheel.dll"
-target = "BepInEx/plugins/GatsWheel.dll"
+target = "GatsWheel.dll"
 
 [[build.copy]]
 source = "CHANGELOG.md"
