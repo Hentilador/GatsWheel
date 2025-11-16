@@ -4,8 +4,8 @@ using HarmonyLib;
 using Pigeon.Movement;
 using UnityEngine;
 
-namespace GatsWheel
-{
+namespace GatsWheel;
+
     [MycoMod(null, ModFlags.IsClientSide)]
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     public class Plugin : BaseUnityPlugin
@@ -148,4 +148,4 @@ namespace GatsWheel
             }
         }
     }
-}
+
