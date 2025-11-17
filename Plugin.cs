@@ -33,11 +33,8 @@ namespace GatsWheel;
     [HarmonyPatch(typeof(RewardSpinner), "HasRequiredResources")]
     class HasRequiredResourcesPatch
     {
-        // changed: use ref for firstAvailable so we can see what the original set,
-        // and don't overwrite when original already returned true.
         static void Postfix(RewardSpinner __instance, ref bool __result, ref PlayerResource firstAvailable)
         {
-            // If the original method already succeeded, preserve its result and out param.
             if (__result) return;
 
             var costArray = AccessTools.Field(typeof(RewardSpinner), "cost")
@@ -48,6 +45,7 @@ namespace GatsWheel;
                 return;
             }
 
+            // First pass: check primary resources only
             for (int i = 0; i < costArray.Length; i++)
             {
                 if (firstAvailable == null)
@@ -59,15 +57,17 @@ namespace GatsWheel;
                     __result = true;
                     return;
                 }
-
-                var gats = PlayerResource.GetResource("scrip");
-                if (gats != null && PlayerData.Instance.GetResource(gats) >= Plugin.GatsFallbackCost)
-                {
-                    firstAvailable = gats;
-                    __result = true;
-                    return;
-                }
             }
+
+            // Second pass: only check Gats fallback if no primary resource worked
+            var gats = PlayerResource.GetResource("scrip");
+            if (__result != true && gats != null && PlayerData.Instance.GetResource(gats) >= Plugin.GatsFallbackCost)
+            {
+                firstAvailable = gats;
+                __result = true;
+                return;
+            }
+
             __result = false;
         }
     }
@@ -98,18 +98,17 @@ namespace GatsWheel;
                     Plugin.Logger.LogInfo($"RewardSpinner used {resource.Name} for spin.");
                     break;
                 }
-
-                // Try Gats fallback with fixed cost
-                var gats = PlayerResource.GetResource("scrip");
-                if (gats != null && PlayerData.Instance.TryRemoveResource(gats, Plugin.GatsFallbackCost))
-                {
-                    flag = true;
-                    Plugin.Logger.LogInfo($"RewardSpinner used Gats fallback ({Plugin.GatsFallbackCost}) for spin.");
-                    break;
-                }
             }
 
-            if (!flag)
+            // Try Gats fallback with fixed cost ONLY if primary fails
+            var gats = PlayerResource.GetResource("scrip");
+            if (flag != true && gats != null && PlayerData.Instance.TryRemoveResource(gats, Plugin.GatsFallbackCost))
+            {
+                flag = true;
+                Plugin.Logger.LogInfo($"RewardSpinner used Gats fallback ({Plugin.GatsFallbackCost}) for spin.");
+            }
+
+        if (!flag)
             {
                 var abilityErrorSound = AccessTools.Field(typeof(Global), "AbilityErrorSound").GetValue(Global.Instance);
                 AccessTools.Method(abilityErrorSound.GetType(), "Post").Invoke(abilityErrorSound, new object[] { PlayerLook.Instance.gameObject });
